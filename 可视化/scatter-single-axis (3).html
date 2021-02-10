@@ -1,0 +1,130 @@
+<!--
+    THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/zh/editor.html?c=scatter-single-axis
+-->
+<!DOCTYPE html>
+<html style="height: 100%">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.0.1/dist/echarts.min.js"></script>
+        <!-- Uncomment this line if you want to dataTool extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.0.1/dist/extension/dataTool.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to use gl extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to echarts-stat extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to use map
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.0.1/map/js/china.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.0.1/map/js/world.js"></script>
+        -->
+        <!-- Uncomment these two lines if you want to use bmap extension
+        <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=<Your Key Here>"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.0.1/dist/extension/bmap.min.js"></script>
+        -->
+
+        <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+
+
+var hours = ['0.0','0.1','0.2','0.3','0.4','0.5','0.6','0.7','0.8','0.9','1.0'];
+var days = ['same field', 'diff field 1', 'diff field 2',
+        'Wednesday', 'Tuesday', 'Monday', 'Sunday'];
+
+var data =
+[[0, 0, 0.31333333333333335],
+ [0, 1, 2.1466666666666665],
+ [0, 2, 7.913333333333333],
+ [0, 3, 16.346666666666668],
+ [0, 4, 23.313333333333333],
+ [0, 6, 42.06666666666667],
+ [0, 7, 45.56666666666667],
+ [0, 5, 25.52],
+ [0, 8, 30.42],
+ [0, 9, 20.486666666666668],
+ [1, 0, 2.7714285714285714],
+ [1, 1, 13.314285714285715],
+ [1, 2, 26.6],
+ [1, 3, 36.885714285714286],
+ [1, 4, 21.17142857142857],
+ [1, 5, 13.057142857142857],
+ [1, 6, 8.514285714285714],
+ [1, 7, 7.514285714285714],
+ [1, 8, 8.228571428571428],
+ [1, 9, 3.942857142857143],
+ [2, 0, 1.3333333333333333],
+ [2, 1, 8.0],
+ [2, 2, 17.133333333333333],
+ [2, 3, 27.6],
+ [2, 4, 35.933333333333334],
+ [2, 5, 24.333333333333332],
+ [2, 6, 15.266666666666666],
+ [2, 7, 13.6],
+ [2, 8, 7.0],
+ [2, 9, 5.8]]
+ 
+option = {textStyle: {
+  fontFamily: 'Times',
+},
+    tooltip: {
+        position: 'top'
+    },
+    title: [],
+    singleAxis: [],
+    series: []
+};
+
+days.forEach(function (day, idx) {
+    option.title.push({
+        textBaseline: 'middle',
+        top: (idx + 0.5) * 100 / 3 + '%',
+        text: day
+    });
+    option.singleAxis.push({
+        left: 250,
+        type: 'category',
+        boundaryGap: false,
+        data: hours,
+        top: (idx * 100 / 3 + 5) + '%',
+        height: (100 / 3 - 10) + '%',
+        axisLabel: {
+            interval: 0,
+            textStyle: {
+                    color: '#000000',
+                    fontSize: 50,
+                }
+        }
+    });
+    option.series.push({
+        singleAxisIndex: idx,
+        coordinateSystem: 'singleAxis',
+        type: 'scatter',
+        data: [],
+        symbolSize: function (dataItem) {
+            return dataItem[1] * 4;
+        }
+    });
+});
+
+data.forEach(function (dataItem) {
+    option.series[dataItem[0]].data.push([dataItem[1], dataItem[2]]);
+});
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+        </script>
+    </body>
+</html>
+    

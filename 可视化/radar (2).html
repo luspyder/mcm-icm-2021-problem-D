@@ -1,0 +1,134 @@
+<!--
+    THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/zh/editor.html?c=radar
+-->
+<!DOCTYPE html>
+<html style="height: 100%">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.0.1/dist/echarts.min.js"></script>
+        <!-- Uncomment this line if you want to dataTool extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.0.1/dist/extension/dataTool.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to use gl extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to echarts-stat extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to use map
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.0.1/map/js/china.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.0.1/map/js/world.js"></script>
+        -->
+        <!-- Uncomment these two lines if you want to use bmap extension
+        <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=<Your Key Here>"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.0.1/dist/extension/bmap.min.js"></script>
+        -->
+
+        <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+
+
+option = {
+    textStyle: {
+  fontFamily: 'Times',
+},
+    title: {
+        text: ''
+    },
+    tooltip: {textStyle: {
+                fontSize: 60
+            }},
+    legend: {
+        data: ['Easy Listening','Stage & Screen'],
+        textStyle: {
+                color: '#000000',
+                fontSize: 60
+            },
+    },
+    radar: {
+        // shape: 'circle',
+        axisLine: { // (圆内的几条直线)坐标轴轴线相关设置
+            lineStyle: {
+                color: '#000',
+                // 坐标轴线线的颜色。
+                width: 3,
+                // 坐标轴线线宽。
+                //type: 'solid',
+                // 坐标轴线线的类型。
+            }
+        },
+        splitLine: { // (这里是指所有圆环)坐标轴在 grid 区域中的分隔线。
+            lineStyle: {
+                color: '#A9A9A9',
+                // 分隔线颜色
+                width:3,
+                // 分隔线线宽
+            }
+        },
+        name: {
+            textStyle: {
+                color: '#000',
+                backgroundColor: '#fff',
+                borderRadius: 3,
+                padding: [3, 5],
+                fontSize: 60
+            }
+        },
+        indicator: [
+                 {text: 'emotion', max: 2.5},
+                {text: 'rhythm', max: 60},
+                {text: 'purity', max: 2},
+                {text: 'duration_ms', max: 310000},
+                {text: 'popularity', max: 60},
+                {text: 'instrumentalness', max: 0.8},
+        ]
+    },
+    series: [{
+        name: '预算 vs 开销（Budget vs spending）',
+        type: 'radar',
+        // areaStyle: {normal: {}},
+        itemStyle: { // 折线拐点标志的样式。
+            normal: { // 普通状态时的样式
+                lineStyle: {
+                    width: 5
+                },
+                opacity: 0.2
+            },
+            emphasis: { // 高亮时的样式
+                lineStyle: {
+                    width: 5
+                },
+                opacity: 1
+            }
+        },
+        data: [
+            {
+                value: [ 1.46, 38.62, 1.53, 179973.91, 18.44, 0.53, 1961.31],
+                name: 'Easy Listening',
+            },
+            {
+                value: [ 1.19, 35.76, 1.58, 210351.06, 29.82, 0.49, 1977.78],
+                name: 'Stage & Screen',
+            },
+                    
+        ]
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+        </script>
+    </body>
+</html>
+    
